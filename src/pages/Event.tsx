@@ -1,5 +1,6 @@
 import React, { FC, useState, useEffect } from "react";
 import { Layout, Row, Button, Modal } from "antd";
+
 import EventCalendar from "../components/EventCalendar";
 import EventForm from "../components/EventForm";
 import { useActions } from "../hooks/useActions";
@@ -14,7 +15,7 @@ const Event: FC = () => {
 
   useEffect(() => {
     getGuests();
-    getEvents(user!.username);
+    getEvents(user.username);
   }, []);
 
   const addNewEvent = (event: IEvent) => {
@@ -25,6 +26,7 @@ const Event: FC = () => {
   return (
     <Layout style={{ margin: "0 5vh" }}>
       <EventCalendar events={events} />
+
       <Row justify="center">
         <Button
           type="primary"
@@ -35,6 +37,7 @@ const Event: FC = () => {
           Add Event
         </Button>
       </Row>
+
       <Modal
         title="Add Event"
         open={isModalVisible}

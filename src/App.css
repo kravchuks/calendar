@@ -1,5 +1,17 @@
-@import '~antd/dist/reset.css';
+@import "~antd/dist/reset.css";
 
 .h100 {
   height: calc(100vh - 64px);
+}
+
+.header {
+  margin-right: 10vh;
+  color: white !important;
+}
+
+@media (max-width: 550px) {
+  .header {
+    margin-right: 3vh;
+    font-size: 20px !important;
+  }
 }

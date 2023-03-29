@@ -1,8 +1,9 @@
 import React, { FC, useState } from "react";
 import { Form, Input, DatePicker, Row, Button, Select } from "antd";
+import { Dayjs } from "dayjs";
+
 import { rules } from "../utils/rules";
 import { IUser } from "../models/IUser";
-import { Dayjs } from "dayjs";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { IEvent } from "../models/IEvent";
 
@@ -24,7 +25,7 @@ const EventForm: FC<EventFormProps> = ({ guests, onSubmit }) => {
   };
 
   const formSubmit = () => {
-    const author = user!.username;
+    const author = user.username;
     onSubmit({ author, guest, date, description });
   };
 

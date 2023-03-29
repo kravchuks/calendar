@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { FC, useEffect } from "react";
 import AppRouter from "./components/AppRouter";
 import Navbar from "./components/Navbar";
 import { Layout } from "antd";
@@ -6,7 +6,7 @@ import "./App.css";
 import { useActions } from "./hooks/useActions";
 import { IUser } from "./models/IUser";
 
-const App: React.FC = () => {
+const App: FC = () => {
   const { setAuth, setUser } = useActions();
 
   useEffect(() => {

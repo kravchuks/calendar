@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { Calendar, Badge } from "antd";
 import { Dayjs } from "dayjs";
 
@@ -9,16 +9,26 @@ interface EventCalendarProps {
 }
 
 const EventCalendar: FC<EventCalendarProps> = ({ events }) => {
+  
+
   const dateCellRender = (value: Dayjs) => {
     const formattedDate = value.format("YYYY-MM-DD");
     const currentDayEvents = events.filter(
       (event) => event.date === formattedDate
     );
+
     return (
-      <ul style={{ listStyle: "none" }}>
-        {currentDayEvents.map((event) => (
-          <li key={event.author}>
-            <Badge status="success" text={event.description} />
+      <ul
+        style={{
+          listStyle: "none",
+          margin: 0,
+          padding: 0,
+          whiteSpace: "nowrap",
+        }}
+      >
+        {currentDayEvents.map((event, index) => (
+          <li key={index}>
+            <Badge status="warning" text={event.description} />
           </li>
         ))}
       </ul>
