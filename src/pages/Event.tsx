@@ -15,17 +15,21 @@ const Event: FC = () => {
 
   useEffect(() => {
     getGuests();
-    getEvents(user.username);
+    getEvents();
   }, []);
 
+  const filteredEvents = events.filter(
+    (event) => event.author === user.username || event.guest === user.username
+  );
+
   const addNewEvent = (event: IEvent) => {
-    createEvent(event, user.username);
+    createEvent(event);
     setIsModalVisible(false);
   };
 
   return (
     <Layout style={{ margin: "0 5vh" }}>
-      <EventCalendar events={events} />
+      <EventCalendar events={filteredEvents} />
 
       <Row justify="center">
         <Button

@@ -39,29 +39,29 @@ export const EventActionCreators = {
       dispatch(EventActionCreators.setError("Error"));
     }
   },
-  createEvent:
-    (event: IEvent, username: string) => async (dispatch: AppDispatch) => {
-      try {
-        dispatch(EventActionCreators.setIsLoading(true));
+  createEvent: (event: IEvent) => async (dispatch: AppDispatch) => {
+    try {
+      dispatch(EventActionCreators.setIsLoading(true));
 
-        const events = localStorage.getItem("events") || "[]";
-        const json = JSON.parse(events) as IEvent[];
-        json.push(event);
-        dispatch(EventActionCreators.setEvents(json));
-        localStorage.setItem("events", JSON.stringify(json));
+      const events = localStorage.getItem("events") || "[]";
+      const json = JSON.parse(events) as IEvent[];
+      json.push(event);
+      dispatch(EventActionCreators.setEvents(json));
+      localStorage.setItem("events", JSON.stringify(json));
 
-        dispatch(EventActionCreators.setIsLoading(false));
-      } catch (e) {
-        dispatch(EventActionCreators.setError("Error"));
-      }
-    },
-  getEvents: (username: string) => async (dispatch: AppDispatch) => {
+      dispatch(EventActionCreators.setIsLoading(false));
+    } catch (e) {
+      dispatch(EventActionCreators.setError("Error"));
+    }
+  },
+  getEvents: () => async (dispatch: AppDispatch) => {
     try {
       dispatch(EventActionCreators.setIsLoading(true));
 
       const events = localStorage.getItem("events") || "[]";
       const json = JSON.parse(events) as IEvent[];
       dispatch(EventActionCreators.setEvents(json));
+      console.log(json);
 
       dispatch(EventActionCreators.setIsLoading(false));
     } catch (e) {

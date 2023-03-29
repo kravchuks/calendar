@@ -30,6 +30,7 @@ export const AuthActionCreators = {
     (username: string, password: string) => async (dispatch: AppDispatch) => {
       try {
         dispatch(AuthActionCreators.setIsLoading(true));
+
         setTimeout(async () => {
           const response = await UserService.getUsers();
           const mockUser = response.data.find(
@@ -45,6 +46,7 @@ export const AuthActionCreators = {
               AuthActionCreators.setError("Incorrect username or password")
             );
           }
+
           dispatch(AuthActionCreators.setIsLoading(false));
         }, 1000);
       } catch (e) {
