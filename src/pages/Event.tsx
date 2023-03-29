@@ -1,11 +1,11 @@
 import React, { FC, useState, useEffect } from "react";
 import { Layout, Row, Button, Modal } from "antd";
 
-import EventCalendar from "../components/EventCalendar";
-import EventForm from "../components/EventForm";
-import { useActions } from "../hooks/useActions";
-import { useTypedSelector } from "../hooks/useTypedSelector";
-import { IEvent } from "../models/IEvent";
+import EventCalendar from "components/EventCalendar";
+import EventForm from "components/EventForm";
+import { useActions } from "hooks/useActions";
+import { useTypedSelector } from "hooks/useTypedSelector";
+import { IEvent } from "models/IEvent";
 
 const Event: FC = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -19,7 +19,7 @@ const Event: FC = () => {
   }, []);
 
   const addNewEvent = (event: IEvent) => {
-    createEvent(event);
+    createEvent(event, user.username);
     setIsModalVisible(false);
   };
 

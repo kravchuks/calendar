@@ -2,10 +2,10 @@ import React, { FC, useState } from "react";
 import { Form, Input, DatePicker, Row, Button, Select } from "antd";
 import { Dayjs } from "dayjs";
 
-import { rules } from "../utils/rules";
-import { IUser } from "../models/IUser";
-import { useTypedSelector } from "../hooks/useTypedSelector";
-import { IEvent } from "../models/IEvent";
+import { rules } from "utils/rules";
+import { IUser } from "models/IUser";
+import { useTypedSelector } from "hooks/useTypedSelector";
+import { IEvent } from "models/IEvent";
 
 interface EventFormProps {
   guests: IUser[];
@@ -17,6 +17,7 @@ const EventForm: FC<EventFormProps> = ({ guests, onSubmit }) => {
   const [date, setDate] = useState("");
   const [guest, setGuest] = useState("");
   const { user } = useTypedSelector((state) => state.auth);
+  const { isLoading, error } = useTypedSelector((state) => state.event);
 
   const selectDate = (date: Dayjs | null) => {
     if (date) {
@@ -31,6 +32,7 @@ const EventForm: FC<EventFormProps> = ({ guests, onSubmit }) => {
 
   return (
     <Form onFinish={formSubmit}>
+      {error && <div style={{ color: "red" }}>{error}</div>}
       <Form.Item
         label="Description of Event"
         name="description"
@@ -67,7 +69,7 @@ const EventForm: FC<EventFormProps> = ({ guests, onSubmit }) => {
 
       <Row justify="end">
         <Form.Item>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" loading={isLoading}>
             Create
           </Button>
         </Form.Item>

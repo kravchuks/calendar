@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 import { Layout, Row, Button, Space, Typography } from "antd";
 
-import { useTypedSelector } from "../hooks/useTypedSelector";
-import { useActions } from "../hooks/useActions";
+import { useTypedSelector } from "hooks/useTypedSelector";
+import { useActions } from "hooks/useActions";
 
 const { Text, Title } = Typography;
 

@@ -1,6 +1,6 @@
 import React from "react";
-import Login from "../pages/Login";
-import Event from "../pages/Event";
+import Login from "pages/Login";
+import Event from "pages/Event";
 
 export interface IRoutes {
   path: string;

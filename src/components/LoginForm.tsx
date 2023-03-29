@@ -1,9 +1,9 @@
 import React, { FC, useState } from "react";
 import { Form, Input, Button } from "antd";
 
-import { useTypedSelector } from "../hooks/useTypedSelector";
-import { rules } from "../utils/rules";
-import { useActions } from "../hooks/useActions";
+import { useTypedSelector } from "hooks/useTypedSelector";
+import { rules } from "utils/rules";
+import { useActions } from "hooks/useActions";
 
 const LoginForm: FC = () => {
   const { error, isLoading } = useTypedSelector((state) => state.auth);

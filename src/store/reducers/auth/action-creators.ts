@@ -5,9 +5,9 @@ import {
   SetErrorAction,
   SetIsLoadingAction,
 } from "./types";
-import { IUser } from "../../../models/IUser";
-import { AppDispatch } from "../../index";
-import UserService from "../../../api/UserService";
+import { IUser } from "models/IUser";
+import { AppDispatch } from "store/index";
+import UserService from "api/UserService";
 
 export const AuthActionCreators = {
   setAuth: (auth: boolean): SetAuthAction => ({

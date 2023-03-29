@@ -5,10 +5,10 @@ import {
   SetIsLoadingAction,
   SetErrorAction,
 } from "./types";
-import { IEvent } from "../../../models/IEvent";
-import { AppDispatch } from "../../index";
-import { IUser } from "../../../models/IUser";
-import UserService from "../../../api/UserService";
+import { IEvent } from "models/IEvent";
+import { AppDispatch } from "store/index";
+import { IUser } from "models/IUser";
+import UserService from "api/UserService";
 
 export const EventActionCreators = {
   setGuests: (guests: IUser[]): SetGuestsAction => ({
@@ -30,42 +30,40 @@ export const EventActionCreators = {
   getGuests: () => async (dispatch: AppDispatch) => {
     try {
       dispatch(EventActionCreators.setIsLoading(true));
-      setTimeout(async () => {
-        const response = await UserService.getUsers();
-        dispatch(EventActionCreators.setGuests(response.data));
-        dispatch(EventActionCreators.setIsLoading(false));
-      }, 1000);
+
+      const response = await UserService.getUsers();
+      dispatch(EventActionCreators.setGuests(response.data));
+
+      dispatch(EventActionCreators.setIsLoading(false));
     } catch (e) {
       dispatch(EventActionCreators.setError("Error"));
     }
   },
-  createEvent: (event: IEvent) => async (dispatch: AppDispatch) => {
-    try {
-      dispatch(EventActionCreators.setIsLoading(true));
-      setTimeout(async () => {
+  createEvent:
+    (event: IEvent, username: string) => async (dispatch: AppDispatch) => {
+      try {
+        dispatch(EventActionCreators.setIsLoading(true));
+
         const events = localStorage.getItem("events") || "[]";
         const json = JSON.parse(events) as IEvent[];
         json.push(event);
         dispatch(EventActionCreators.setEvents(json));
         localStorage.setItem("events", JSON.stringify(json));
+
         dispatch(EventActionCreators.setIsLoading(false));
-      }, 1000);
-    } catch (e) {
-      dispatch(EventActionCreators.setError("Error"));
-    }
-  },
+      } catch (e) {
+        dispatch(EventActionCreators.setError("Error"));
+      }
+    },
   getEvents: (username: string) => async (dispatch: AppDispatch) => {
     try {
       dispatch(EventActionCreators.setIsLoading(true));
-      setTimeout(async () => {
-        const events = localStorage.getItem("events") || "[]";
-        const json = JSON.parse(events) as IEvent[];
-        const currentEvents = json.filter(
-          (ev) => ev.author === username || ev.guest === username
-        );
-        dispatch(EventActionCreators.setEvents(currentEvents));
-        dispatch(EventActionCreators.setIsLoading(false));
-      }, 1000);
+
+      const events = localStorage.getItem("events") || "[]";
+      const json = JSON.parse(events) as IEvent[];
+      dispatch(EventActionCreators.setEvents(json));
+
+      dispatch(EventActionCreators.setIsLoading(false));
     } catch (e) {
       dispatch(EventActionCreators.setError("Error"));
     }

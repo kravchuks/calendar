@@ -2,7 +2,7 @@ import React, { FC, useEffect } from "react";
 import { Calendar, Badge } from "antd";
 import { Dayjs } from "dayjs";
 
-import { IEvent } from "../models/IEvent";
+import { IEvent } from "models/IEvent";
 
 interface EventCalendarProps {
   events: IEvent[];
